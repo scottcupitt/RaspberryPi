@@ -10,7 +10,11 @@ temp = True
 if __name__ == "__main__": 
     #PROCEED WITH DATA COLLECTION AND SENDING TO GRAFANA
     def data_acquire_send_loop(device): #argument is any instance-ed device
+<<<<<<< HEAD
         global temp        
+=======
+        global temp
+>>>>>>> 2fe2860c1f3b9e9b1a24079b2f2704d25a308202
         while temp == True:
             try:
                 print("Trying to connect to server...")
@@ -19,7 +23,10 @@ if __name__ == "__main__":
                 data_server.connect((CARBON_HOST, CARBON_PORT))
                 data_server.setsockopt(socket.SOL_SOCKET,socket.SO_KEEPALIVE,1)
                 print(f"[Client] Connected from {data_server.getsockname()} to {data_server.getpeername()}")
+<<<<<<< HEAD
                 
+=======
+>>>>>>> 2fe2860c1f3b9e9b1a24079b2f2704d25a308202
                 print("Connected to server")
                 temp = False
             except Exception as e:
@@ -29,7 +36,10 @@ if __name__ == "__main__":
         
         while True:
             try:
+<<<<<<< HEAD
                 data = device.get_data()
+=======
+>>>>>>> 2fe2860c1f3b9e9b1a24079b2f2704d25a308202
                 device.send_data(data,data_server)
                 time.sleep(0.5)
             except Exception as e:
@@ -41,7 +51,10 @@ if __name__ == "__main__":
     print("[Main] Starting data acquisition process")
     data_acquire_send_loop(rpi)
     print("[Main] Process started")
+<<<<<<< HEAD
 
+=======
+>>>>>>> 2fe2860c1f3b9e9b1a24079b2f2704d25a308202
     
 	
 
