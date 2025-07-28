@@ -22,8 +22,6 @@ class MonitoringDevice:
     def disconnect(self):
         pass
 
-temp = False
-
 class RPI(MonitoringDevice):    
     def __init__(self,name,address,port,device_names=[],timeout=1.0): 
     #device_names and timeout are set as default as [] as 1.0, also initializing this overwrites parent class attr
