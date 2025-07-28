@@ -49,14 +49,9 @@ class RPI(MonitoringDevice):
         values = data[:len(self.device_names)]  #slice 16-array data to no. of devices we have
         for i in range(len(values)):                   #eg if two devices in device_names then only two data
             dest = self.name + "." + self.device_names[i] #destination name
-<<<<<<< HEAD
-            data_send = (values[i][0]*correction_factor)
+            data_send = values[i][0]
             t = str(time.time())
-            
-=======
-            data_send = (values[i][0])
             t = str(time.time())          
->>>>>>> 2fe2860c1f3b9e9b1a24079b2f2704d25a308202
             dest_enc = dest.encode('UTF-8')
             data_send_enc = str(data_send).encode('UTF-8')
             t_enc = t.encode('UTF-8')
@@ -64,11 +59,6 @@ class RPI(MonitoringDevice):
                 data_server.send(b'%s %s %s\n' % (dest_enc,data_send_enc,t_enc))
             except Exception as e:
                 print(f"Error: {e}")
-<<<<<<< HEAD
-
-=======
->>>>>>> 2fe2860c1f3b9e9b1a24079b2f2704d25a308202
-
                     
         
 
