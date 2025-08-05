@@ -2,8 +2,10 @@ from monitoring import RPI
 import socket
 import time 
 
-CARBON_HOST = '172.29.10.14' 
+CARBON_HOST = '172.29.10.245' 
 CARBON_PORT = 2003
+hostname = socket.gethostname()
+ipaddress = socket.gethostbyname(hostname)
 
 temp = True
 if __name__ == "__main__": 
@@ -35,7 +37,7 @@ if __name__ == "__main__":
                 time.sleep(1)
                 
     rp_device_names = ['R0_0','R0_1','R0_2','R0_3','R0_4','R0_5','R0_6','R0_7','R1_0','R1_1','R1_2','R1_3','R1_4','R1_5','R1_6','R1_7']
-    rpi = RPI(name = 'rpi', address=CARBON_HOST, port = CARBON_PORT, device_names=rp_device_names)
+    rpi = RPI(name = 'rpi', address=CARBON_HOST, port = CARBON_PORT, ipaddr=ipaddress, device_names=rp_device_names)
     print("[Main] Starting data acquisition process")
     data_acquire_send_loop(rpi)
     print("[Main] Process started")

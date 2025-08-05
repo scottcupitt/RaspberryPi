@@ -20,11 +20,12 @@ class MonitoringDevice: #same format as previous runfiles
         pass
 
 class RPI(MonitoringDevice):    
-    def __init__(self,name,address,port,device_names=[],timeout=1.0): 
+    def __init__(self,name,address,port,ipaddr,device_names=[],timeout=1.0): 
     #device_names and timeout are set as default as [] as 1.0, also initializing this overwrites parent class attr
         self.name = name #name of raspberrypi
         self.address = address #ip address of rpi
         self.port = port # port of rpi
+        self.ipaddr = ipaddr
         self.device_names = device_names #default is []. put e.g. [ionpump, photodiode]
         self.timeout = timeout #which we default set at 1.0
         data = self.get_data() #'temporary' variable
@@ -45,7 +46,7 @@ class RPI(MonitoringDevice):
     def send_data(self,data,data_server): #arguments are data, data_server
         values = data[:len(self.device_names)]  #slice 16-array data to no. of devices we have
         for i in range(len(values)):                   #eg if two devices in device_names then only two data
-            dest = self.name + "." + self.device_names[i] #destination name
+            dest = self.name + str(int(self.ipaddr[12:]) - 4) +"." + self.device_names[i] #destination name
             data_send = values[i][0]
             t = str(time.time())     
             dest_enc = dest.encode('UTF-8')
